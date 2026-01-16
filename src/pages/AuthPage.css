@@ -1,0 +1,220 @@
+/* --- GLOBAL AUTH THEME --- */
+:root {
+  --bg-deep: #eef2f6;
+  --orange: #f97316;
+  --orange-shade: #c2410c;
+  --blue: #3b82f6;
+  --blue-shade: #1d4ed8;
+  --text: #1e293b;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-deep);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Grid Mesh */
+.auth-background-mesh {
+  position: absolute;
+  width: 200%; height: 200%;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: rotate(45deg);
+  z-index: 0;
+}
+
+/* HEADER */
+.auth-header {
+  position: absolute; top: 40px; left: 40px;
+  display: flex; align-items: center; gap: 15px; z-index: 10;
+}
+.logo-3d {
+  width: 50px; height: 50px;
+  background: var(--orange);
+  color: white;
+  font-weight: 900;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 0 var(--orange-shade); /* 3D Depth */
+}
+.auth-header h2 {
+  font-size: 1.5rem; color: var(--text); margin: 0;
+}
+
+/* --- STEP 1: ROLE SELECTION --- */
+.role-selection-stage {
+  z-index: 10; text-align: center;
+}
+.role-selection-stage h1 {
+  font-size: 3rem; margin-bottom: 50px; color: var(--text);
+  text-shadow: 0 2px 0 rgba(0,0,0,0.1);
+}
+
+.cards-row {
+  display: flex; gap: 40px;
+}
+
+/* 3D CARDS */
+.role-card {
+  width: 300px; height: 380px;
+  cursor: pointer;
+  transition: transform 0.1s ease-out; /* Smooth tilt */
+}
+
+.card-face {
+  background: white;
+  height: 100%;
+  border-radius: 30px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 
+    0 20px 0 rgba(0,0,0,0.05), /* Thick 3D Bottom */
+    0 30px 40px rgba(0,0,0,0.1); /* Soft shadow */
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.role-card:hover .card-face {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 0 rgba(0,0,0,0.05), 0 50px 60px rgba(0,0,0,0.15);
+}
+
+.icon-3d {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 30px;
+  color: white;
+}
+.icon-3d.orange { 
+  background: linear-gradient(135deg, #fb923c, #ea580c); 
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
+}
+.icon-3d.blue { 
+  background: linear-gradient(135deg, #60a5fa, #2563eb); 
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+}
+
+.role-card h3 { font-size: 2rem; margin: 0 0 10px 0; color: var(--text); }
+.role-card p { color: #64748b; margin-bottom: 30px; line-height: 1.5; }
+
+.btn-fake {
+  background: var(--text); color: white;
+  padding: 12px 30px; border-radius: 50px; font-weight: 700;
+  box-shadow: 0 5px 0 #000; /* 3D Button */
+  transition: 0.1s;
+}
+.role-card:active .btn-fake {
+  transform: translateY(5px); box-shadow: none;
+}
+.btn-fake.blue { background: var(--blue); box-shadow: 0 5px 0 var(--blue-shade); }
+
+/* --- STEP 2: FORM STAGE --- */
+.form-stage { z-index: 10; display: flex; flex-direction: column; align-items: flex-start; }
+
+.btn-back {
+  background: white; border: none; padding: 10px 20px;
+  border-radius: 50px; font-weight: 700; color: var(--text);
+  cursor: pointer; margin-bottom: 20px;
+  box-shadow: 0 4px 0 #cbd5e1;
+  display: flex; align-items: center; gap: 8px;
+  transition: 0.1s;
+}
+.btn-back:active { transform: translateY(4px); box-shadow: none; }
+
+.auth-form-card {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  width: 800px; height: 500px;
+}
+
+/* LEFT SIDE VISUAL */
+.form-visual {
+  width: 40%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: white; gap: 20px;
+}
+.auth-form-card.teacher .form-visual { background: linear-gradient(135deg, #f97316, #ea580c); }
+.auth-form-card.student .form-visual { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+.form-visual h3 { font-size: 1.8rem; margin: 0; text-align: center; }
+
+/* RIGHT SIDE FORM */
+.form-content {
+  width: 60%; padding: 50px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+.mode-toggle {
+  display: flex; background: #f1f5f9; padding: 5px; border-radius: 12px; margin-bottom: 30px;
+}
+.mode-toggle button {
+  flex: 1; border: none; background: transparent; padding: 10px;
+  font-weight: 600; color: #64748b; cursor: pointer; border-radius: 8px;
+  transition: 0.2s;
+}
+.mode-toggle button.active {
+  background: white; color: var(--text);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.input-3d-wrapper {
+  position: relative; margin-bottom: 20px;
+}
+.input-3d-wrapper svg {
+  position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+  color: #94a3b8;
+}
+.input-3d-wrapper input {
+  width: 100%; padding: 16px 16px 16px 45px;
+  background: #f8fafc;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 1rem; outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); /* Inner Shadow for depth */
+  transition: 0.2s;
+}
+.input-3d-wrapper input:focus {
+  background: white; border-color: var(--text);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* TEACHER THEME FOCUS */
+.teacher .input-3d-wrapper input:focus { border-color: var(--orange); }
+/* STUDENT THEME FOCUS */
+.student .input-3d-wrapper input:focus { border-color: var(--blue); }
+
+.btn-3d-submit {
+  width: 100%; padding: 16px; border: none; border-radius: 12px;
+  color: white; font-weight: 700; font-size: 1.1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 10px; transition: 0.1s;
+}
+
+.teacher .btn-3d-submit { background: var(--orange); box-shadow: 0 5px 0 var(--orange-shade); }
+.teacher .btn-3d-submit:active { transform: translateY(5px); box-shadow: none; }
+
+.student .btn-3d-submit { background: var(--blue); box-shadow: 0 5px 0 var(--blue-shade); }
+.student .btn-3d-submit:active { transform: translateY(5px); box-shadow: none; }
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+  .cards-row { flex-direction: column; }
+  .auth-form-card { flex-direction: column; width: 90%; height: auto; }
+  .form-visual { width: 100%; padding: 30px; }
+  .form-content { width: 100%; padding: 30px; }
+}

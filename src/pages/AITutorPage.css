@@ -1,0 +1,123 @@
+/* ClassSession.css - Add these to the bottom of your existing file */
+
+/* --- MARKDOWN STYLING --- */
+.markdown-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.markdown-body ul, .markdown-body ol {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.markdown-body li {
+  margin-bottom: 4px;
+}
+
+.markdown-body strong {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+/* --- ACTION BUTTONS --- */
+.action-row {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn.highlight {
+  color: var(--accent-blue);
+  background: var(--accent-blue-soft);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.icon-btn.highlight:hover {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* --- QUIZ SECTION --- */
+.quiz-section {
+  margin-top: 20px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 15px;
+}
+
+.quiz-header {
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+  background: #f8fafc;
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.quiz-preview {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.mini-scroll {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* --- TOAST --- */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--accent-green);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease-out;
+  z-index: 200;
+  font-weight: 500;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
