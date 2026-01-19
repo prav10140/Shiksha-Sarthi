@@ -19,7 +19,18 @@ function AuthPage() {
   const [mode, setMode] = useState('signin') 
   
   // Added selectedBatch state
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", selectedBatch: "" })
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    selectedBatch: "",
+  
+    // TEACHER CONTEXT
+    classLevel: "",
+    subject: "",
+    language: "",
+    classType: ""
+  })
   const [availableBatches, setAvailableBatches] = useState([]) // Store batches from DB
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -140,6 +151,64 @@ function AuthPage() {
                     <input placeholder="Full Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
                   </div>
                 )}
+
+{role === 'teacher' && mode === 'signup' && (
+  <>
+    <div className="input-3d-wrapper">
+      <Layers size={18} />
+      <input
+        placeholder="Class (e.g. Class 4)"
+        value={formData.classLevel}
+        onChange={e => setFormData({ ...formData, classLevel: e.target.value })}
+        required
+      />
+    </div>
+
+    <div className="input-3d-wrapper">
+      <BookOpen size={18} />
+      <input
+        placeholder="Subject (Math, EVS, etc.)"
+        value={formData.subject}
+        onChange={e => setFormData({ ...formData, subject: e.target.value })}
+        required
+      />
+    </div>
+
+    <div className="input-3d-wrapper">
+      <User size={18} />
+      <input
+        placeholder="Preferred Language"
+        value={formData.language}
+        onChange={e => setFormData({ ...formData, language: e.target.value })}
+        required
+      />
+    </div>
+
+    <div className="input-3d-wrapper">
+      <Layers size={18} />
+      <select
+        value={formData.classType}
+        onChange={e => setFormData({ ...formData, classType: e.target.value })}
+        required
+        style={{
+          width: '100%',
+          padding: '16px 16px 16px 45px',
+          background: '#f8fafc',
+          border: '2px solid transparent',
+          borderRadius: '12px',
+          fontSize: '1rem',
+          outline: 'none',
+          appearance: 'none',
+          cursor: 'pointer'
+        }}
+      >
+        <option value="">Class Type</option>
+        <option value="Single Grade">Single Grade</option>
+        <option value="Multi Grade">Multi Grade</option>
+      </select>
+    </div>
+  </>
+)}
 
                 {/* --- BATCH SELECTION DROPDOWN (NEW) --- */}
                 {role === 'student' && mode === 'signup' && (

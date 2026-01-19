@@ -21,32 +21,48 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   // 1. UPDATED SIGNUP: Accepts classId for students
-  async function signup(email, password, name, role, classId = null) {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-    const user = userCredential.user
-
-    await updateProfile(user, { displayName: name })
-
-    // Create User Document in Firestore
-    await setDoc(doc(db, "users", user.uid), {
-      name: name,
-      email: email,
-      role: role,
-      enrolledClassId: classId, // Store the batch ID immediately
-      createdAt: new Date().toISOString()
-    })
-
-    // If a student selected a class, add them to the class roster immediately
-    if (role === 'student' && classId) {
-      const classRef = doc(db, "classes", classId);
-      await updateDoc(classRef, {
-        students: arrayUnion(user.uid)
-      }).catch(err => console.log("Class update skipped:", err)); // Prevent crash if class doesn't exist
+   // 1. UPDATED SIGNUP: Accepts classId for students
+    const signup = async (
+    email,
+    password,
+    name,
+    role,
+    batchId,
+    teacherExtraData
+  ) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+  
+    const user = userCredential.user;
+  
+    // Base user data (for everyone)
+    const userData = {
+      uid: user.uid,
+      name,
+      email,
+      role,
+      createdAt: new Date()
+    };
+  
+    // 👩‍🏫 Only add teacher data IF role is teacher
+    if (role === "teacher" && teacherExtraData) {
+      userData.classLevel = teacherExtraData.classLevel ?? "beginner";
+      userData.subject = teacherExtraData.subject;
+      userData.language = teacherExtraData.language;
+      userData.classType = teacherExtraData.classType;
     }
-    
-    setUserRole(role)
-    return user
-  }
+  
+    // 👨‍🎓 Student batch
+    if (role === "student" && batchId) {
+      userData.batchId = batchId;
+    }
+  
+    await setDoc(doc(db, "users", user.uid), userData);
+  };
+  
 
   // 2. LOGIN (With Safety Check)
   async function login(email, password) {
