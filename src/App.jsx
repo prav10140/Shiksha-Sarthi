@@ -4,12 +4,15 @@ import LandingPage from './pages/LandingPage'
 import AuthPage from './pages/AuthPage' 
 import TeacherDashboard from "./pages/TeacherDashboard"
 import ClassesPage from "./pages/ClassesPage" 
-import ClassSession from "./pages/ClassSession" 
+import ClassSession from "./pages/components/ClassSession" 
 import Schedule from "./pages/Schedule"
 import StudentDashboard from "./pages/StudentDashboard"
 import AITutorPage from "./pages/AITutorPage" // <--- FIXED: Added Missing Import
 import { useAuth } from "./contexts/AuthContext"
 import "./App.css"
+
+import ClassLiveLayout from "./pages/ClassLiveLayout"
+import AttendancePage from "./pages/components/AttendanceSidebar"
 
 function App() {
   return (
@@ -21,7 +24,27 @@ function App() {
         {/* TEACHER ROUTES */}
         <Route path="/dashboard" element={<ProtectedRoute role="teacher"><TeacherDashboard /></ProtectedRoute>} />
         <Route path="/classes" element={<ProtectedRoute role="teacher"><ClassesPage /></ProtectedRoute>} />
-        <Route path="/class/:classId" element={<ProtectedRoute role="teacher"><ClassSession /></ProtectedRoute>} />
+        {/* <Route path="/class/:classId" element={<ProtectedRoute role="teacher"><ClassSession /></ProtectedRoute>} /> */}
+
+
+        <Route
+          path="/class/:classId/live"
+          element={
+            <ProtectedRoute>
+              <ClassLiveLayout />
+            </ProtectedRoute>
+          }
+        >
+          {/* DEFAULT → ONLINE SESSION */}
+          <Route index element={<ClassSession />} />
+
+          {/* ONLINE SESSION */}
+          <Route path="session" element={<ClassSession />} />
+
+          {/* ATTENDANCE */}
+          <Route path="attendance" element={<AttendancePage />} />
+        </Route>
+
         <Route path="/schedule" element={<ProtectedRoute role="teacher"><Schedule /></ProtectedRoute>} />
         
         {/* STUDENT ROUTES */}

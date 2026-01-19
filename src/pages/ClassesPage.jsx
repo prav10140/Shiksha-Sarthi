@@ -219,7 +219,7 @@ function ClassesPage() {
               </div>
             ) : (
               filteredClasses.map(cls => (
-                 <div key={cls.id} className="class-card-modern" onClick={() => navigate(`/class/${cls.id}`)}>
+                 <div key={cls.id} className="class-card-modern" onClick={() => navigate(`/class/${cls.id}/live`)}>
                     <div className="card-top">
                        <div className="card-badges">
                           {cls.computedStatus === 'live' && <span className="badge-live"><span className="dot"></span> LIVE</span>}

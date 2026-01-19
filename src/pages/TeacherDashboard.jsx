@@ -177,7 +177,7 @@ function TeacherDashboard() {
                                   <p className="subject-line">{cls.subject}</p>
                                   <div className="code-box" onClick={() => copyToClipboard(cls.id)}><span>Code: <strong>{cls.id}</strong></span><Copy size={14}/></div>
                               </div>
-                              <button className="btn-outline" onClick={() => navigate(`/class/${cls.id}`)}>Start</button>
+                              <button className="btn-outline" onClick={() => navigate(`/class/${cls.id}/live`)}>Start</button>
                           </div>
                        ))
                     )}
