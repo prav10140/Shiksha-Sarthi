@@ -3,14 +3,16 @@
 import { useState, useEffect, useRef } from "react"
 import { useParams, Link } from "react-router-dom"
 import { doc, getDoc, collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore"
-import { db } from "../firebase"
-import { generateQuickAssist, generateClassSummary, generateQuiz } from "../utils/groq" 
+import { db } from "../../firebase"
+import { generateQuickAssist, generateClassSummary, generateQuiz } from "../../utils/groq" 
 import ReactMarkdown from 'react-markdown' 
 import { 
   ChevronLeft, Users, Mic, Square, Download, 
   Zap, Play, Activity, Clock, Pause, Send, FileQuestion, CheckCircle
 } from "lucide-react" 
-import "./ClassSession.css"
+import "../ClassSession.css"
+import AttendanceSidebar from "./AttendanceSidebar"
+
 
 function ClassSession() {
   const { classId } = useParams()
@@ -227,36 +229,6 @@ function ClassSession() {
 
   return (
     <div className="class-session-container">
-      
-      {/* ANIMATED OVERLAY */}
-      {isProcessing && (
-        <div className="processing-overlay">
-           <div className="loader-box">
-              <div className="spinner"></div>
-              <h3>AI at Work...</h3>
-              <p>Analyzing & Saving to History.</p>
-           </div>
-        </div>
-      )}
-
-      {/* SUCCESS TOAST */}
-      {sendingStatus === 'sent' && (
-          <div className="toast-notification">
-              <CheckCircle size={20} /> Sent to all {students.length} students!
-          </div>
-      )}
-
-      <aside className="session-sidebar">
-        <div className="sidebar-brand">
-            <div className="brand-icon">S</div>
-        </div>
-        <nav className="sidebar-nav">
-          <Link to="/classes" className="nav-link active"><Users size={20}/></Link>
-          <div className="nav-divider"></div>
-          <Link to="/dashboard" className="nav-link exit"><ChevronLeft size={20}/></Link>
-        </nav>
-      </aside>
-
       <main className="session-main">
         <header className="session-header">
            <div className="header-content">

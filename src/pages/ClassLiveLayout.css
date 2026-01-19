@@ -1,0 +1,59 @@
+.live-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #020617;
+}
+
+.live-sidebar {
+  width: 240px;
+  background: #020617;
+  border-right: 1px solid #1e293b;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.live-sidebar h3 {
+  font-size: 15px;
+  color: #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.sidebar-link {
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.sidebar-link:hover {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.sidebar-link.active {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.live-content {
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+/* Attendance hover */
+.attendance-row.clickable {
+  cursor: pointer;
+}
+
+.attendance-row.clickable:hover {
+  transform: translateX(4px);
+  border-color: #2563eb;
+}
