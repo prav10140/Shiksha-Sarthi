@@ -57,3 +57,42 @@
   transform: translateX(4px);
   border-color: #2563eb;
 }
+
+
+.live-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0f172a;
+  padding: 16px;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Push bottom section down */
+.sidebar-bottom {
+  margin-top: auto;
+  margin-bottom: 40px;
+}
+
+/* Leave Button */
+.leave-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.leave-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35);
+}

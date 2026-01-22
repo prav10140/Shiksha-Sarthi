@@ -14,6 +14,7 @@ import {
 } from "lucide-react" 
 import ReactMarkdown from 'react-markdown' 
 import "./StudentDashboard.css"
+import StudentAttendanceButton from "./components/StudentAttendanceButton"
 
 function StudentDashboard() {
   const { currentUser, logout } = useAuth()
@@ -224,6 +225,7 @@ function StudentDashboard() {
                 {/* LIVE ROOM */}
                 {activeTab === 'classroom' && (
                    <div className="dashboard-grid">
+                       <StudentAttendanceButton classId={selectedClass.id} />
                        <div className="stat-card"><div className="icon-box green"><CheckCircle size={24}/></div><div><h3>On Time</h3><p>Status</p></div></div>
                        <div className="stat-card"><div className="icon-box orange"><Shield size={24}/></div><div><h3>Active</h3><p>Focus Mode</p></div></div>
                        <div className="stat-card"><div className="icon-box blue"><Mic size={24}/></div><div><h3>{noiseLevel}</h3><p>Noise Level</p></div></div>
