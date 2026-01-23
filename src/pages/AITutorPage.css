@@ -1,123 +1,123 @@
-/* ClassSession.css - Add these to the bottom of your existing file */
-
-/* --- MARKDOWN STYLING --- */
-.markdown-body {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-primary);
-}
-
-.markdown-body h1, .markdown-body h2, .markdown-body h3 {
-  margin-top: 10px;
-  margin-bottom: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-.markdown-body ul, .markdown-body ol {
-  padding-left: 20px;
-  margin-bottom: 10px;
-}
-
-.markdown-body li {
-  margin-bottom: 4px;
-}
-
-.markdown-body strong {
-  color: var(--accent-blue);
-  font-weight: 600;
-}
-
-/* --- ACTION BUTTONS --- */
-.action-row {
-  display: flex;
-  gap: 8px;
-}
-
-.icon-btn.highlight {
-  color: var(--accent-blue);
-  background: var(--accent-blue-soft);
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.icon-btn.highlight:hover {
-  background: var(--accent-blue);
+/* ROOT CONTAINER */
+.ai-voice-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+  overflow: hidden;
   color: white;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* --- QUIZ SECTION --- */
-.quiz-section {
-  margin-top: 20px;
-  border-top: 1px solid #e2e8f0;
-  padding-top: 15px;
+/* LAYERS */
+.canvas-container {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
 }
 
-.quiz-header {
-  margin-bottom: 10px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  font-weight: 600;
+.ui-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 30px;
+  pointer-events: none; /* Allows clicks to pass through */
 }
 
-.secondary-btn {
-  width: 100%;
-  padding: 10px;
-  background: white;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  color: var(--text-primary);
+/* INTERACTIVE ELEMENTS */
+.voice-header, .voice-controls { pointer-events: auto; }
+
+/* HEADER */
+.voice-header { display: flex; justify-content: space-between; align-items: center; }
+
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8); padding: 10px 20px; border-radius: 30px;
+  cursor: pointer; backdrop-filter: blur(10px); transition: 0.3s;
+}
+.back-btn:hover { background: rgba(255, 255, 255, 0.15); color: white; transform: translateX(-3px); }
+
+/* STATUS */
+.status-pill {
+  display: flex; align-items: center; gap: 10px; padding: 8px 16px;
+  border-radius: 20px; background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+  font-size: 0.9rem; font-weight: 600;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #64748b; }
+.status-pill.listening .status-dot { background: #2dd4bf; box-shadow: 0 0 10px #2dd4bf; }
+.status-pill.thinking .status-dot { background: #c084fc; box-shadow: 0 0 10px #c084fc; }
+.status-pill.speaking .status-dot { background: #f97316; box-shadow: 0 0 10px #f97316; }
+
+/* CAPTIONS */
+.captions-area {
+  flex-grow: 1; display: flex; align-items: center; justify-content: center;
+  text-align: center; max-width: 800px; margin: 0 auto;
+}
+.caption-text {
+  font-size: 2.5rem; font-weight: 300; line-height: 1.4;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+.caption-text.fade { opacity: 0.5; }
+
+/* CONTROLS */
+.voice-controls { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 20px; }
+
+.mic-button {
+  width: 80px; height: 80px; border-radius: 50%; border: none;
+  background: white; color: #020617;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.3s;
+}
+.mic-button:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+.mic-button.active { background: #f97316; color: white; animation: pulse-ring 2s infinite; }
+
+.hint { font-size: 0.9rem; color: rgba(255, 255, 255, 0.5); }
+.spin { animation: spin 1s linear infinite; }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Add these new classes to your existing CSS file */
+
+.language-selector {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  margin-right: auto; /* Pushes it slightly away from back button */
+  margin-left: 15px;
+}
+
+.lang-icon {
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-select {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
+  outline: none;
 }
 
-.secondary-btn:hover {
-  background: #f8fafc;
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-}
-
-.quiz-preview {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.mini-scroll {
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-/* --- TOAST --- */
-.toast-notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--accent-green);
+.lang-select option {
+  background: #1e293b; /* Matches dark background for dropdown items */
   color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  animation: slideIn 0.3s ease-out;
-  z-index: 200;
-  font-weight: 500;
+  padding: 10px;
 }
 
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+/* Update Caption Font to support Hindi characters nicely */
+.caption-text {
+  /* ... existing styles ... */
+  font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
 }
