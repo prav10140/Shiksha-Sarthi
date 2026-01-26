@@ -1,15 +1,18 @@
+// export default LandingPage
+
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { 
   Sparkles, CheckCircle, ArrowRight, Play, 
-  Users, BookOpen, Shield, Bell, Mic, Lock 
+  Users, Shield, Bell, Mic, Lock,
+  Zap, BarChart3, ShieldCheck, Layers, Layout, Globe 
 } from 'lucide-react'
 import "./LandingPage.css"
 
 function LandingPage() {
   const navigate = useNavigate()
   
-  // 3D Tilt Effect State
+  // 3D Tilt Effect State for the phone mockup
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
 
   const handleMouseMove = (e) => {
@@ -35,7 +38,6 @@ function LandingPage() {
           <a href="#pricing">Pricing</a>
         </div>
 
-        {/* UPDATED AUTH BUTTONS */}
         <div className="auth-buttons">
           <button className="btn-signin" onClick={() => navigate('/login')}>
             Sign In
@@ -72,9 +74,9 @@ function LandingPage() {
 
           <div className="trust-badges">
             <div className="avatars">
-               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt=""/>
-               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt=""/>
-               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mark" alt=""/>
+               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"/>
+               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" alt="User"/>
+               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mark" alt="User"/>
             </div>
             <span>Used by 500+ Institutions</span>
           </div>
@@ -114,10 +116,10 @@ function LandingPage() {
                      <h5 className="section-title"><Sparkles size={12}/> AI Assistant</h5>
                      <div className="mock-chat">
                         <div className="chat-bubble bot">
-                           Teacher: "Explain useEffect simply."
+                            Teacher: "Explain useEffect simply."
                         </div>
                         <div className="chat-bubble user">
-                           AI: "It's like a side-effect manager. It runs code *after* the render is committed..."
+                            AI: "It's like a side-effect manager. It runs code *after* the render is committed..."
                         </div>
                      </div>
                   </div>
@@ -161,12 +163,10 @@ function LandingPage() {
                         <h4>Subject: React Hooks</h4>
                         <p>Code: <strong>X7K-9P2</strong></p>
                         <div className="progress-bar"><div className="fill" style={{width: '85%'}}></div></div>
-                        <span className="tiny-text">34/40 Students Joined</span>
                      </div>
                   </div>
 
                 </div>
-                {/* --- END SCROLLING --- */}
 
                 {/* Static Bottom Bar */}
                 <div className="phone-bottom-bar">
@@ -185,7 +185,7 @@ function LandingPage() {
         </div>
       </header>
 
-      {/* --- FEATURES GRID --- */}
+      {/* --- INITIAL FEATURES GRID --- */}
       <section className="features-section" id="features">
         <h2>Built for the Modern <br/>Offline Classroom.</h2>
         <div className="features-grid">
@@ -206,6 +206,124 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* --- SYSTEM ARCHITECTURE SECTION (Steps 4-8) --- */}
+      
+      <section className="architecture-section" id="demo">
+        <div className="section-header">
+          <span className="badge-pill-small">Technical Workflow</span>
+          <h2>A Multi-Layered Approach <br/>to Classroom Focus.</h2>
+        </div>
+
+        <div className="arch-container">
+          {/* Row 1: Disturbance & Lock */}
+          <div className="arch-row">
+            <div className="arch-card-extended">
+              <div className="arch-icon-wrapper blue">
+                <Mic size={24} />
+              </div>
+              <div className="arch-info">
+                <h4>04. Noise Detection</h4>
+                <p>Local processing monitors chatter and background noise. Data is converted to alerts instantly without storing audio.</p>
+                <span className="privacy-tag">Privacy Secured</span>
+              </div>
+            </div>
+
+            <div className="arch-card-extended">
+              <div className="arch-icon-wrapper orange">
+                <Layers size={24} />
+              </div>
+              <div className="arch-info">
+                <h4>05. Activity Monitoring</h4>
+                <p>Detects tab-switching, unauthorized app launches, or background media playback with soft-warning systems.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 2: Content & Quizzes */}
+          <div className="arch-row">
+            <div className="arch-card-extended">
+              <div className="arch-icon-wrapper green">
+                <Layout size={24} />
+              </div>
+              <div className="arch-info">
+                <h4>06. Content Control</h4>
+                <p>Uniform learning pace by restricting student screens to teacher-provided PDFs, slides, or whiteboard only.</p>
+              </div>
+            </div>
+
+            <div className="arch-card-extended">
+              <div className="arch-icon-wrapper purple">
+                <Zap size={24} />
+              </div>
+              <div className="arch-info">
+                <h4>07. Live Engagement</h4>
+                <p>Push instant MCQs and concept-check questions directly to devices to maintain high student attention levels.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Full Width: Reports */}
+          <div className="arch-card-featured">
+            <div className="arch-featured-content">
+              <div className="arch-icon-wrapper gold">
+                <BarChart3 size={32} />
+              </div>
+              <div>
+                <h3>08. Post-Class Analytics & Reports</h3>
+                <p>Comprehensive logs for teachers including individual focus scores, participation data, and noise heatmaps—all generated automatically at session end.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PROFESSIONAL FOOTER --- */}
+      <footer className="landing-footer">
+        <div className="footer-content">
+          <div className="footer-brand-section">
+            <div className="logo-area">
+              <div className="logo-icon">ST</div>
+              <span className="logo-text">ShikshaSaarthi</span>
+            </div>
+            <p className="footer-desc">
+              Bridging the gap between offline traditional teaching and modern digital control.
+            </p>
+            <div className="footer-trust">
+              <div className="trust-item"><ShieldCheck size={16}/> GDPR Compliant</div>
+              <div className="trust-item"><Lock size={16}/> 256-bit Encrypted</div>
+            </div>
+          </div>
+
+          <div className="footer-links-grid">
+            <div className="footer-col">
+              <h5>Platform</h5>
+              <a href="#features">Teacher Portal</a>
+              <a href="#features">Student Lock-App</a>
+              <a href="#pricing">Institutions</a>
+            </div>
+            <div className="footer-col">
+              <h5>Company</h5>
+              <a href="#privacy">Privacy Policy</a>
+              <a href="#ethical">Ethical Design</a>
+              <a href="#security">Security Lab</a>
+            </div>
+            <div className="footer-col">
+              <h5>Contact</h5>
+              <a href="#help">Help Center</a>
+              <a href="#sales">Contact Sales</a>
+              <a href="#partners">Partner Program</a>
+            </div>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>© 2026 ShikshaSaarthi. Made for focused learning.</p>
+          <div className="footer-lang">
+            <Globe size={14}/> <span>English (US)</span>
+          </div>
+        </div>
+      </footer>
 
     </div>
   )
