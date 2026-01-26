@@ -58,9 +58,9 @@ A central classroom interface where both teachers and students log in to a **Loc
 ## 👥 The Team
 This project was developed with passion and technical precision by:
 
-| Name | Role |
-| :--- | :--- |
-| **Kartik Rawat** | 
+| Name |
+| :--- 
+| **Kartik Rawat** |
 | **Praveen Kumar Patel** | 
 | **Nikhil Dangi** | 
 | **Abhishek Gupta** | 
